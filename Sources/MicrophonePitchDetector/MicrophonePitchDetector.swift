@@ -19,19 +19,23 @@ public final class MicrophonePitchDetector {
     }
 
     @MainActor
-    public func activate(debug: Bool = false) async {
+    public func activate(debug: Bool = true) async {
         let startDate = Date()
-        var intervalMS: UInt64 = 30
+        var intervalMS: UInt64 = 15
 
         while !didReceiveAudio {
             if debug {
                 print("Waiting \(intervalMS * 2)ms")
             }
-            try? await Task.sleep(nanoseconds: intervalMS * NSEC_PER_MSEC)
-            self.setUpPitchTracking()
-            try? await Task.sleep(nanoseconds: intervalMS * NSEC_PER_MSEC)
-            start()
-            intervalMS = min(intervalMS * 2, 180)
+            if(activeLisin){
+                try? await Task.sleep(nanoseconds: intervalMS * NSEC_PER_MSEC)
+                self.setUpPitchTracking()
+                try? await Task.sleep(nanoseconds: intervalMS * NSEC_PER_MSEC)
+                
+                start()
+                intervalMS = min(intervalMS * 2, 180)
+            }
+           
         }
 
         if debug {
