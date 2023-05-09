@@ -6,6 +6,7 @@ public final class MicrophonePitchDetector {
     private var tracker: PitchTap!
 
     public var didReceiveAudio = false
+    public var activeLisin = true
     private let didReceivedPitch: (Double) -> Void
     private let didReceiveAudioCallback: () -> Void
 
@@ -52,7 +53,9 @@ public final class MicrophonePitchDetector {
             guard let self else { return }
             self.didReceiveAudioCallback()
         })
-        start()
+        if(activeLisin){
+            start()
+        }
     }
 
     private func start() {
