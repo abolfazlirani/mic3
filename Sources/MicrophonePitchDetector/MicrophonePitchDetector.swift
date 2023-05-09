@@ -24,10 +24,11 @@ public final class MicrophonePitchDetector {
         var intervalMS: UInt64 = 15
 
         while !didReceiveAudio {
-            if debug {
-                print("Waiting \(intervalMS * 2)ms")
-            }
+            
             if(activeLisin){
+                if debug {
+                    print("Waiting \(intervalMS * 2)ms")
+                }
                 try? await Task.sleep(nanoseconds: intervalMS * NSEC_PER_MSEC)
                 self.setUpPitchTracking()
                 try? await Task.sleep(nanoseconds: intervalMS * NSEC_PER_MSEC)
