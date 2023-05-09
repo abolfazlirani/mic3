@@ -41,7 +41,8 @@ public final class MicrophonePitchDetector {
 
     // MARK: - Private
     public func stop() throws{
-           try engine.stop();
+           try engine.stop()
+        try tracker.stop()
         }
     private func setUpPitchTracking() {
         tracker = PitchTap(engine.input, handler: { [weak self] pitch in
