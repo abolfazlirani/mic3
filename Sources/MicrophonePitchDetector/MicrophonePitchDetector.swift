@@ -23,7 +23,7 @@ public final class MicrophonePitchDetector {
         let startDate = Date()
         var intervalMS: UInt64 = 15
 
-        while !didReceiveAudio {
+        while !didReceiveAudio && activeLisin {
             if debug {
                 print("Waiting \(intervalMS * 2)ms")
             }
@@ -44,8 +44,10 @@ public final class MicrophonePitchDetector {
 
     // MARK: - Private
     public func stop() throws{
-           try engine.stop()
+        activeLisin = false
+        try engine.stop()
         try tracker.stop()
+        tracker = nil
         }
     private func setUpPitchTracking() {
         tracker = PitchTap(engine.input, handler: { [weak self] pitch in

@@ -25,6 +25,7 @@ final class PitchTap {
     func stop(){
         input.avAudioNode.engine?.stop()
         input.avAudioNode.reset()
+        input.avAudioNode.removeTap(onBus: 0)
     }
 
     // MARK: - Lifecycle
