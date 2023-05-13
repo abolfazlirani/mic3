@@ -64,8 +64,10 @@ public final class MicrophonePitchDetector {
 
     private func start() {
         do {
-            try engine.start()
-            tracker.start()
+            if(activeLisin){
+                try engine.start()
+                tracker.start()
+            }
         } catch {
             // TODO: Handle error
         }
