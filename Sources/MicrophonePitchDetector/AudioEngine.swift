@@ -69,9 +69,9 @@ final class AudioEngine {
     init() {}
 
     func stop() throws {
-        avEngine.disconnectNodeInput(avEngine.inputNode)
-        avEngine.detach(_input.avAudioNode)
-        avEngine.detach(mainMixerNode!.avAudioNode)
+     //   avEngine.disconnectNodeInput(avEngine.inputNode)
+      //  avEngine.detach(_input.avAudioNode)
+      //  avEngine.detach(mainMixerNode!.avAudioNode)
         avEngine.stop()
         if avEngine.isRunning == false{ avEngine.disconnectNodeOutput(mainMixerNode!.avAudioNode)
             
